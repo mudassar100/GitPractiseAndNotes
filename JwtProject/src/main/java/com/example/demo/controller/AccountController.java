@@ -7,16 +7,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("v1")
-public class TestController {
+@RequestMapping("/v2")
+public class AccountController {
 
-    Logger logger = LoggerFactory.getLogger(TestController.class);
+	Logger logger = LoggerFactory.getLogger(TestController.class);
 
     @GetMapping("/test")
     public String test() {
         this.logger.warn("This is working message");
-        return "Testing message";
+        return "account-details are 1000";
     }
-
 
 }
