@@ -19,9 +19,9 @@ public class ProjectSecurityConfig {
 
 	@Bean
     public SecurityFilterChain getDefaultConfig(HttpSecurity http) throws Exception {
-        http.authorizeHttpRequests(authz -> authz
-                .requestMatchers("/v1/**").permitAll()
-                .requestMatchers("/v2/**").authenticated())
+        http.csrf().disable().authorizeHttpRequests(authz -> authz
+                .requestMatchers("v1/**").permitAll()
+                .requestMatchers("v2/**").authenticated())
             .formLogin(Customizer.withDefaults())
             .httpBasic(Customizer.withDefaults());
 

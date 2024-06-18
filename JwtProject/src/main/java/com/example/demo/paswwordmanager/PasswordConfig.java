@@ -6,6 +6,7 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 
@@ -14,26 +15,29 @@ import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 public class PasswordConfig  {
 	
 
-    @Bean
-    public UserDetailsService userDetailsService() {
-    	//Create  a in memoery manager
-        InMemoryUserDetailsManager manager = new InMemoryUserDetailsManager();
+//    @Bean
+//    public UserDetailsService userDetailsService() {
+//    	//Create  a in memoery manager
+//        InMemoryUserDetailsManager manager = new InMemoryUserDetailsManager();
+//
+//        //Create a user
+//        manager.createUser(User.withUsername("test")
+//                              .password(passwordEncoder().encode("test"))
+//                              .roles("USER")
+//                              .build());
+//        
+//        System.out.println("Encrypted password is {}"+ passwordEncoder().encode("password"));
+//        return manager;
+//    }
 
-        //Create a user
-        manager.createUser(User.withUsername("test")
-                              .password(passwordEncoder().encode("test"))
-                              .roles("USER")
-                              .build());
-        
-        System.out.println("Encrypted password is {}"+ passwordEncoder().encode("password"));
-        return manager;
-    }
-
-    @Bean
-    public PasswordEncoder passwordEncoder() {
-        return new BCryptPasswordEncoder();
-    }
+//    @Bean
+//    public PasswordEncoder passwordEncoder() {
+//        return new BCryptPasswordEncoder();
+//    }
    
 	
-	
+    @Bean
+    public PasswordEncoder passwordEncoder() {
+        return NoOpPasswordEncoder.getInstance();
+    }
 }
